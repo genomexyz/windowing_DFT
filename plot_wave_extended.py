@@ -55,4 +55,4 @@ for i in range(len(fftdata)):
 	fftdatafreq[i] = abs(fftdata[i].real)
 
 plot_data(np.arange(0, len(time_modified_extended) // 2), fftdatafreq[:len(time_modified_extended) // 2], 
-'Frequency', 'Power', 'sin_wave_fft-modified-extended.png', title='FFT of Unfinished 4 Hz Sine Wave (extended)', y_lim=100)
+'Frequency', 'Power', 'sin_wave_fft-modified-extended.png', title='FFT of Unfinished 4 Hz Sine Wave (extended)', y_lim=70)
