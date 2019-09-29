@@ -13,15 +13,18 @@ frequency = 4
 total_time = 10
 res = 0.01
 
-def plot_data(x_data, y_data, x_label, y_label, fig_name, title='Sine Wave', y_lim=None, ):
+def plot_data(x_data, y_data, x_label, y_label, fig_name, title='Sine Wave', y_lim=None, plot_type='plot'):
 	fig = plt.figure()
 	ax = fig.add_subplot(111)
 	ax.set_xlim(x_data[0], x_data[-1])
 	if y_lim != None:
-		ax.set_ylim(0, y_lim)
+		ax.set_ylim(y_lim[0], y_lim[1])
 	ax.set_ylabel(y_label)
 	ax.set_xlabel(x_label)
-	ax.plot(x_data, y_data)
+	if plot_type == 'plot':
+		ax.plot(x_data, y_data)
+	elif plot_type == 'stem':
+		ax.stem(x_data, y_data)
 	ax.set_title(title)
 	fig.savefig(fig_name)
 	plt.close(fig)
@@ -45,5 +48,5 @@ amplitude = np.sin(2 * np.pi * frequency * (time/time[-1]))
 hann_weight = hann(len(amplitude))
 hamm_weight = hamm(len(amplitude))
 
-plot_data(time, hann_weight, 'Time', 'Amplitude', 'Hann_plot.png', 'Hann Window', y_lim=1)
-plot_data(time, hamm_weight, 'Time', 'Amplitude', 'Hamm_plot.png', 'Hamm Window', y_lim=1)
+plot_data(time, hann_weight, 'Time', 'Amplitude', 'Hann_plot.png', 'Hann Window', y_lim=[0,1])
+plot_data(time, hamm_weight, 'Time', 'Amplitude', 'Hamm_plot.png', 'Hamm Window', y_lim=[0,1])
