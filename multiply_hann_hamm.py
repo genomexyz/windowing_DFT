@@ -39,24 +39,18 @@ def hamm(total_data):
 		hann_array[i] = 0.5386 - 0.46164 * np.cos((2 * np.pi * i) / (total_data - 1))
 	return hann_array
 
-
 time = np.arange(0, total_time, res)
+amplitude = np.sin(2 * np.pi * frequency * total_time * (time/time[-1]))
 
-amplitude = np.sin(2 * np.pi * frequency * (time/time[-1]))
+#modify
+time = time[:-minus_step]
 amplitude = amplitude[:-minus_step]
 
-time_modified_extended = np.arange(0, total_time*extend_times, res)[:-minus_step*extend_times]
-amplitude_modified_extended = np.zeros(len(amplitude)*extend_times)
-for i in range(extend_times):
-	amplitude_modified_extended[i*len(amplitude):(i+1)*len(amplitude)] = amplitude
+hann_weight = hann(len(amplitude))
+hamm_weight = hamm(len(amplitude))
 
-hann_weight = hann(len(amplitude_modified_extended))
-hamm_weight = hamm(len(amplitude_modified_extended))
+amplitude_multiplied_hann = amplitude * hann_weight
+amplitude_multiplied_hamm = amplitude * hamm_weight
 
-amplitude_modified_extended_hann = amplitude_modified_extended * hann_weight
-amplitude_modified_extended_hamm = amplitude_modified_extended * hamm_weight
-
-print(amplitude_modified_extended_hann)
-
-plot_data(time_modified_extended, amplitude_modified_extended_hann, 'Time', 'Amplitude', 'Hann_multiplied_plot.png', 'Unfinished 4 Hz Sine Wave Weighted by Hann', y_lim=1)
-plot_data(time_modified_extended, amplitude_modified_extended_hamm, 'Time', 'Amplitude', 'Hamm_multiplied_plot.png', 'Unfinished 4 Hz Sine Wave Weighted by Hamm', y_lim=1)
+plot_data(time, amplitude_multiplied_hann, 'Time', 'Amplitude', 'Hann_multiplied_plot.png', 'Unfinished 4 Hz Sine Wave Weighted by Hann', y_lim=1)
+plot_data(time, amplitude_multiplied_hamm, 'Time', 'Amplitude', 'Hamm_multiplied_plot.png', 'Unfinished 4 Hz Sine Wave Weighted by Hamm', y_lim=1)
