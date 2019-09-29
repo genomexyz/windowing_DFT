@@ -9,7 +9,7 @@ from matplotlib import colors
 
 #setting
 extend_times= 3
-minus_step = 5
+minus_step = 9
 frequency = 4
 total_time = 1
 res = 0.01
@@ -55,4 +55,4 @@ for i in range(len(fftdata)):
 	fftdatafreq[i] = abs(fftdata[i].real)
 
 plot_data(np.arange(0, len(time_modified_extended) // 2), fftdatafreq[:len(time_modified_extended) // 2], 
-'Frequency', 'Power', 'sin_wave_fft-modified-extended.png', title='FFT of Unfinished 4 Hz Sine Wave (extended)', y_lim=20)
+'Frequency', 'Power', 'sin_wave_fft-modified-extended.png', title='FFT of Unfinished 4 Hz Sine Wave (extended)', y_lim=100)
