@@ -8,7 +8,6 @@ from mpl_toolkits.basemap import Basemap
 from matplotlib import colors
 
 #setting
-extend_times= 3
 minus_step = 9
 frequency = 4
 total_time = 1
